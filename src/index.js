@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './styles.module.css' 
+import NumberFormat from "react-number-format";
 
  
 export default class ECartComponent extends React.Component {
@@ -48,19 +49,23 @@ export default class ECartComponent extends React.Component {
     let findIndex = data.findIndex((e) => e.id == id)
     data.splice(findIndex, 1)
     this.setState({data: data})
+    if(this.props.deleteProduct) this.props.deleteProduct(id)
   }
   submitOrder = (data) => {
     if(this.props.submitOrder) this.props.submitOrder(data)
   }
+  formatNumber(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  }
   render() {
-  let {customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily} = this.props
+  let {customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ"} = this.props
   let {quantity, data} = this.state 
   let tempPrice = 0
   data.forEach((e) => {
-    tempPrice += e.price*e.quantity
+    if(e.price) tempPrice += e.price*e.quantity
   })
   return  (
-   <div style = {{backgroundColor: "aliceblue", height:"100vh", fontFamily: fontFamily}}> 
+   <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
     <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.length} SẢN PHẨM)</span> </div>
     <div style = {customButtomStyle} className={styles.container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
@@ -68,7 +73,7 @@ export default class ECartComponent extends React.Component {
           return (
             <li key = {index} className={styles.root}>
                 <img  className={styles.imgProduct} src = "https://images.unsplash.com/photo-1532029118404-c94b27247e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"></img>
-                <div className={styles.productContent}>
+                <div className={styles.ecart_productContent}>
                   <div  className={styles.infoProduct}>
                     <div className={styles.title}>{item.name}</div>
                     <div className={styles.provider}>{`Cung cấp bởi: `}<a className={styles.providerName} href= "#">{item.provider}</a></div>
@@ -78,7 +83,7 @@ export default class ECartComponent extends React.Component {
                     </div>
                   </div>
                   <div  className={styles.infoRight}>
-                    <div className={styles.price}>{item.price}d</div>
+                    <div className={styles.ecart_price}> {this.formatNumber(item.price)}{currencyUnit}</div>
                       <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity -1)}>-</button>
                       <input  className={styles.inputQuantity} value={item.quantity} onChange = {(event) => this.changeInputQuantity(item.id, event.target.value)}/>
                       <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity + 1)}>+</button>
@@ -90,11 +95,11 @@ export default class ECartComponent extends React.Component {
       </ul>
       <div style = {customStyleContainerOrder} className={styles.containerOrder}>
         <div  className={styles.cartPrice}>
-      <div className={styles.tempPrice}>Tạm tính:<span  className={styles.tempValue}>{tempPrice}</span></div>
-      <div className={styles.tempPrice}>Thành tiền: <span className = {styles.priceValueFinal}>{tempPrice}</span></div>
+      <div className={styles.tempPrice}>Tạm tính:<span  className={styles.tempValue}>{this.formatNumber(tempPrice)}{currencyUnit}</span></div>
+      <div className={styles.tempPrice}>Thành tiền: <span className = {styles.priceValueFinal}>{this.formatNumber(tempPrice)}{currencyUnit}<i className = {styles.ecart_vat}>(Đã bao gồm VAT nếu có)</i></span></div>
         </div>
         <div >
-          <button style = {styleSubmitButton} onClick = {() => this.submitOrder(data)} className={styles.btnSubmit}>TIẾN HÀNH ĐẶT HÀNG</button>
+          <button style = {styleSubmitButton} onClick = {() => this.submitOrder(data)} className={styles.btnSubmit}>Tiến hành đặt hàng</button>
         </div>
         <div  className={styles.cartPrice}>
           <div className={styles.tempPrice}>Mã giảm giá / Quà tặng</div>

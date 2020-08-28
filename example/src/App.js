@@ -44,6 +44,6 @@ export default class ECartComponent extends React.Component {
      console.log(data)
   }
   render() {
-    return (<ExampleComponent data = {this.state.data} tempPrice = {100000} finalPrice= {300000} changeInputQuantity = {this.changeInputQuantity} submitOrder = {this.submitOrder} />)
+    return (<ExampleComponent customStyleContainerCart = {{backgroundColor: "#f9f9f9"}} customStyleContainerOrder = {{padding: "20px", backgroundColor: "#f9f9f9"}} data = {this.state.data} tempPrice = {100000} finalPrice= {300000} changeInputQuantity = {this.changeInputQuantity} submitOrder = {this.submitOrder} />)
   }
 } 
