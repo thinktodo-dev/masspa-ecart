@@ -1,0 +1,205 @@
+/* add css module styles here (optional) */
+
+.test {
+  margin: 2em;
+  padding: 0.5em;
+  border: 2px solid #000;
+  font-size: 2em;
+  text-align: center;
+}
+.container {
+  display: flex;
+    justify-content: space-between;
+}
+.containerCart {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: #fff;
+  margin: 0;
+}
+.imgProduct {
+  width: 100px;
+  height: 150px;
+}
+.root {
+  display: flex;
+  padding: 20px;
+}
+.infoProduct {
+  margin-left: 16px;
+}
+.name {
+  font-size: 16px;
+}
+.infoProduct {
+  width: 60%;
+}
+.title {
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.provider {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.providerName {
+  color: rgb(27, 168, 255);
+  text-decoration: unset
+
+}
+.action {
+  display: flex;
+
+}
+.actionDelete {
+  color: rgb(27, 168, 255);
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: unset
+}
+.actionBuyLater {
+  color: rgb(27, 168, 255);
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: unset
+}
+.containerOrder {
+  width: 30%;
+  margin-left: 20px;
+  /* margin-right: 20px; */
+}
+.productContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.quantity {
+  cursor: pointer;
+  width: 30px;
+  background-color: #0000000d;
+  height: 30px;
+  border-color: #0000000f;
+}
+.inputQuantity {
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  background-color: #0000000d;
+  border-color: #0000000f;
+  box-sizing: border-box;
+  border-left: none;
+  border-right: none;
+}
+.infoRight {
+  display: flex;
+  height: max-content;
+  align-items: center;
+}
+.price {
+  font-weight: 500;
+  margin-right: 12px;
+}
+.btnSubmit {
+  color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    background: rgb(255, 66, 78);
+    padding: 13px 10px;
+    border-radius: 4px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    margin: 15px 0px;
+}
+.cartPrice {
+  display: flex;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 0px;
+    flex-direction: column;
+    background-color: #fff;
+}
+.tempPrice {
+  display: flex;
+    justify-content: space-between;
+    padding: 17px 20px;
+    align-items: center;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    color: rgb(51, 51, 51);
+    font-size: 15px;
+}
+.tempValue {
+  font-weight: 500;
+}
+.note {
+  display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    font-size: 13px;
+}
+.priceValueFinal {
+  color: rgb(254, 56, 52);
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+}
+.inputPromoContainer {
+  display: flex;
+  padding: 14px 20px;
+}
+.inputPromo {
+  color: rgb(153, 153, 153);
+  font-size: 13px;
+  width: calc(100% - 77px);
+  border-width: 1px 1px 1px;
+  border-style: solid none solid solid;
+  border-color: rgb(224, 224, 224) rgb(224, 224, 224) rgb(224, 224, 224);
+  border-image: initial;
+  border-right: none;
+  padding: 10px 12px;
+  outline: none;
+  border-radius: 3px 0px 0px 3px;
+}
+.btnPromo {
+  color: rgb(36, 36, 36);
+    font-size: 12px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    background: rgb(253, 216, 53);
+    padding: 9px 20px;
+    outline: none;
+    border-radius: 0px 3px 3px 0px;
+    white-space: nowrap;
+}
+.header {
+  color: rgb(51, 51, 51);
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0px 0px 12px;
+}
+.headerSubTitle {
+  font-size: 14px;
+    text-transform: none;
+    font-weight: 300;
+}
+.linkCoupon {
+  display: inline-block;
+    color: rgb(27, 168, 255);
+    margin: 0px 5px;
+    text-decoration: unset
+}
