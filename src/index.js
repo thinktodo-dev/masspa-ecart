@@ -38,11 +38,9 @@ export default class ECartComponent extends React.Component {
   changeInputQuantity = (id, value) => {
     let data = this.state.data
     let findIndex = data.findIndex((e) => e.id == id)
-    console.log(id)
-    console.log(findIndex)
-    console.log(value)
     if(findIndex !== -1) data[findIndex].quantity = value
     this.setState({data: data})
+    if(this.props.changeInputQuantity) this.props.changeData(data)
   }
   deleteProduct = (id) => {
     let data = this.state.data
@@ -72,7 +70,7 @@ export default class ECartComponent extends React.Component {
     <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.length} SẢN PHẨM)</span> </div>
     <div style = {customButtomStyle} className={styles.container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
-        {data.map((item, index) => {
+        {data.length ? data.map((item, index) => {
           return (
             <li key = {index} className={styles.root}>
                 <img  className={styles.imgProduct} src = {item.images && Array.isArray(item.images) ? item.images[0] : NoneImage}></img>
@@ -96,7 +94,8 @@ export default class ECartComponent extends React.Component {
                 </div> 
             </li>
           )
-        })} 
+        })
+      : <div className = {styles.emptyCart}>Không có sản phẩm nào trong giỏ hàng của bạn</div>} 
       </ul>
       <div style = {customStyleContainerOrder} className={styles.containerOrder}>
         <div  className={styles.cartPrice}>
