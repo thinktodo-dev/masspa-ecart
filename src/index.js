@@ -68,7 +68,7 @@ export default class ECartComponent extends React.Component {
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
     <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.length} SẢN PHẨM)</span> </div>
-    <div style = {customButtomStyle} className={styles.container}>
+    <div style = {customButtomStyle} className={styles.ecart_container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
         {data.length ? data.map((item, index) => {
           return (
