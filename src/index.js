@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css' 
 import NumberFormat from "react-number-format";
-
+import NoneImage from 'noneImage.svg'
  
 export default class ECartComponent extends React.Component {
   constructor(props) {
@@ -57,6 +57,9 @@ export default class ECartComponent extends React.Component {
   formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
   }
+  actionClickOnTitle= (id) => { 
+    if(this.props.actionClickOnTitle) this.props.actionClickOnTitle(id)
+  }
   render() {
   let {customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ"} = this.props
   let {quantity, data} = this.state 
@@ -72,10 +75,10 @@ export default class ECartComponent extends React.Component {
         {data.map((item, index) => {
           return (
             <li key = {index} className={styles.root}>
-                <img  className={styles.imgProduct} src = "https://images.unsplash.com/photo-1532029118404-c94b27247e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"></img>
+                <img  className={styles.imgProduct} src = {item.images && Array.isArray(item.images) ? item.images[0] : NoneImage}></img>
                 <div className={styles.ecart_productContent}>
                   <div  className={styles.infoProduct}>
-                    <div className={styles.title}>{item.name}</div>
+                    <div className={styles.title} onClick = {() => this.actionClickOnTitle(item.id)}>{item.name}</div>
                     <div className={styles.provider}>{`Cung cấp bởi: `}<a className={styles.providerName} href= "#">{item.provider}</a></div>
                     <div className={styles.action}>
                       <a onClick = {() => this.deleteProduct(item.id)} href="#"  className={styles.actionDelete}>Xoá</a>
@@ -84,9 +87,11 @@ export default class ECartComponent extends React.Component {
                   </div>
                   <div  className={styles.infoRight}>
                     <div className={styles.ecart_price}> {this.formatNumber(item.price)}{currencyUnit}</div>
-                      <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity -1)}>-</button>
-                      <input  className={styles.inputQuantity} value={item.quantity} onChange = {(event) => this.changeInputQuantity(item.id, event.target.value)}/>
-                      <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity + 1)}>+</button>
+                      <div className={styles.quanlityInput}> 
+                        <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity -1)}>-</button>
+                        <input  className={styles.inputQuantity} value={item.quantity} onChange = {(event) => this.changeInputQuantity(item.id, event.target.value)}/>
+                        <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity + 1)}>+</button>
+                      </div>
                   </div>
                 </div> 
             </li>
