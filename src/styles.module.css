@@ -36,7 +36,7 @@
 .infoProduct {
   width: 60%;
 }
-.title {
+.ecart_title {
   cursor: pointer;
   font-size: 16px;
   margin-bottom: 10px;
@@ -47,8 +47,8 @@
 }
 .providerName {
   color: rgb(27, 168, 255);
-  text-decoration: unset
-
+  text-decoration: unset;
+  cursor: default;
 }
 .action {
   display: flex;

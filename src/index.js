@@ -24,12 +24,6 @@ export default class ECartComponent extends React.Component {
     }
 
   }
-  changeInputQuantity = (id,value) => {
-    if(this.changeInputQuantity) {
-      // this.setState({quantity: value})
-      this.changeInputQuantity(id,value)
-    }
-  }
   selectCoupon = (value) => {
     if(this.props.selectCoupon) { 
       this.props.selectCoupon(value)
@@ -40,7 +34,7 @@ export default class ECartComponent extends React.Component {
     let findIndex = data.findIndex((e) => e.id == id)
     if(findIndex !== -1) data[findIndex].quantity = value
     this.setState({data: data})
-    if(this.props.changeInputQuantity) this.props.changeData(data)
+    if(this.props.changeData) this.props.changeData(data)
   }
   deleteProduct = (id) => {
     let data = this.state.data
@@ -67,7 +61,7 @@ export default class ECartComponent extends React.Component {
   })
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
-    <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.length} SẢN PHẨM)</span> </div>
+    <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.map((e) => e.quantity).reduce((a, b) => a + b)} SẢN PHẨM)</span> </div>
     <div style = {customButtomStyle} className={styles.ecart_container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
         {data.length ? data.map((item, index) => {
@@ -76,7 +70,7 @@ export default class ECartComponent extends React.Component {
                 <img  className={styles.imgProduct} src = {item.images && Array.isArray(item.images) ? item.images[0] : NoneImage}></img>
                 <div className={styles.ecart_productContent}>
                   <div  className={styles.infoProduct}>
-                    <div className={styles.title} onClick = {() => this.actionClickOnTitle(item.id)}>{item.name}</div>
+                    <div className={styles.ecart_title} onClick = {() => this.actionClickOnTitle(item.id)}>{item.name}</div>
                     <div className={styles.provider}>{`Cung cấp bởi: `}<a className={styles.providerName} href= "#">{item.provider}</a></div>
                     <div className={styles.action}>
                       <a onClick = {() => this.deleteProduct(item.id)} href="#"  className={styles.actionDelete}>Xoá</a>
