@@ -17,7 +17,6 @@ export default class ECartComponent extends React.Component {
     this.setState({data: this.props.data})
   }
   changeQuantity = (id, newValue) => {
-   
     if(this.changeInputQuantity) {
       // this.setState({quantity: newValue})
       this.changeInputQuantity(id,newValue >= 0 ? newValue : 0)
@@ -29,7 +28,12 @@ export default class ECartComponent extends React.Component {
       this.props.selectCoupon(value)
     }
   }
+  getNumberOnString(text) {
+    let result = text.toString().match(/\d+/g);
+    return result ? result.join("") : "";
+  }
   changeInputQuantity = (id, value) => {
+    value = Number(this.getNumberOnString(value))
     let data = this.state.data
     let findIndex = data.findIndex((e) => e.id == id)
     if(findIndex !== -1) data[findIndex].quantity = value
@@ -61,7 +65,7 @@ export default class ECartComponent extends React.Component {
   })
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
-    <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.map((e) => e.quantity).reduce((a, b) => a + b)} SẢN PHẨM)</span> </div>
+    <div className = {styles.header}>GIỎ HÀNG <span className = {styles.headerSubTitle}>({data.length ? data.map((e) => e.quantity).reduce((a, b) => a + b) : 0} SẢN PHẨM)</span> </div>
     <div style = {customButtomStyle} className={styles.ecart_container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
         {data.length ? data.map((item, index) => {
