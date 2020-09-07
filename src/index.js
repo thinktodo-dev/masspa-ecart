@@ -72,7 +72,7 @@ export default class ECartComponent extends React.Component {
     if(this.props.actionClickOnTitle) this.props.actionClickOnTitle(id)
   }
   render() {
-  let {sale_price, customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: true, valueVAT: 10} , text = {}} = this.props
+  let {sale_price, customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0} , text = {}} = this.props
   let {quantity, data} = this.state 
   let tempPriceValue = tempPrice  || 0
   if(!tempPriceValue) 
@@ -101,7 +101,7 @@ export default class ECartComponent extends React.Component {
                     </div>
                   </div>
                   <div  className={styles.infoRight}>
-                      <div className={styles.ecart_price}> <div>{this.formatNumber(item.sale_price)}{currencyUnit}</div> <div><span className={styles.discountPrice}>{this.formatNumber(item.price)}{currencyUnit} </span><span className={styles.percentDiscount}>-{Math.ceil(item.price/item.sale_price) * 10}%</span></div></div>
+                      <div className={styles.ecart_price}> <div>{this.formatNumber(item.sale_price)}{currencyUnit}</div> <div style = {{display: "flex"}}><span className={styles.discountPrice}>{this.formatNumber(item.price)}{currencyUnit} </span><span className={styles.percentDiscount}>-{Math.ceil(item.price/item.sale_price) * 10}%</span></div></div>
                       <div className={styles.quanlityInput}> 
                         <button className={styles.quantity} onClick = {() => this.changeQuantity(item.id, item.quantity -1)}>-</button>
                         <input  className={styles.inputQuantity} value={item.quantity} onChange = {(event) => this.changeInputQuantity(item.id, event.target.value)}/>
