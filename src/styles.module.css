@@ -256,15 +256,15 @@
 }
 .headerSubTitle {
   font-size: 14px;
-    text-transform: none;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    margin-left: 4px;
+  text-transform: none;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
 }
 .linkCoupon {
   display: inline-block;
-    color: rgb(27, 168, 255);
-    margin: 0px 5px;
-    text-decoration: unset
+  color: rgb(27, 168, 255);
+  margin: 0px 5px;
+  text-decoration: unset
 }

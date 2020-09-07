@@ -1,39 +1,19 @@
 import React from 'react'
 import styles from './styles.module.css' 
-import NumberFormat from "react-number-format";
 import NoneImage from 'noneImage.svg'
-//  const text = {
-//   shopping_cart: "GIỎ HÀNG",
-//   provider: "Cung cấp bởi",
-//   delete: "Xoá",
-//   delete: "Xoá",
-//   buy_later: "Mua sau",
-//   temp_price: "Tạm tính",
-//   total_price: "Thành tiền",
-//   proceed_to_order: "Tiến hành đặt hàng",
-//   empty_cart: "Không có sản phẩm nào trong giỏ hàng của bạn",
-//   product: "Sản phẩm",
-// }
 export default class ECartComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       quantity: 0,
-      tempPrice: 0,
-      finalPrice: 0,
       data: [],
-      // text: this.props.text ||  
     }
   } 
   componentDidMount() {
     this.setState({data: this.props.data})
   }
-  // componentWillReceiveProps(nextProps) {
-     
-  // }
   changeQuantity = (id, newValue) => {
     if(this.changeInputQuantity) {
-      // this.setState({quantity: newValue})
       this.changeInputQuantity(id,newValue >= 0 ? newValue : 0)
     }
 
@@ -72,7 +52,7 @@ export default class ECartComponent extends React.Component {
     if(this.props.actionClickOnTitle) this.props.actionClickOnTitle(id)
   }
   render() {
-  let {sale_price, customButtomStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0} , text = {}} = this.props
+  let {customButtonStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0} , text = {}} = this.props
   let {quantity, data} = this.state 
   let tempPriceValue = tempPrice  || 0
   if(!tempPriceValue) 
@@ -85,7 +65,7 @@ export default class ECartComponent extends React.Component {
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
     <div className = {styles.header}>{text.shopping_cart || "CART"} <span className = {styles.headerSubTitle}>({data.length ? data.map((e) => e.quantity).reduce((a, b) => a + b) : 0} {text.product || "Products"})</span> </div>
-    <div style = {customButtomStyle} className={styles.ecart_container}>
+    <div style = {customButtonStyle} className={styles.ecart_container}>
       <ul style = {customStyleContainerCart} className={styles.containerCart}>
         {data.length ? data.map((item, index) => {
           return (

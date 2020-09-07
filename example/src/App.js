@@ -16,29 +16,29 @@ export default class ECartComponent extends React.Component {
       // tempPrice: 0,
       // finalPrice: 0,
       data : [
-        {
-          id: 1,
-          name: "Nước Giặt Ariel Đậm Đặc Dạng Túi 3.6kg",
-          provider: "Kim Spa",
-          price: 200000,
-          sale_price: 100000,
-          quantity: 1
-        },
-        {
-         id: 2,
-         name: "Điện Thoại iPhone 7 Plus 128GB - Chính Hãng Mã VN/A - Black",
-          provider: "Kim Spa",
-          price: 300000,
-          sale_price: 100000,
-          quantity: 1
-         },
-         {
-          id: 3,
-          name: "Điện Thoại iPhone 6 Plus 128GB - Chính Hãng Mã VN/A - Black",
-           provider: "Kim Spa",
-          sale_price: 100000,
-          price: 300000,
-           quantity: 23
+          {
+            id: 1,
+            name: "Nước Giặt Ariel Đậm Đặc Dạng Túi 3.6kg",
+            provider: "Kim Spa",
+            price: 200000,
+            sale_price: 100000,
+            quantity: 1
+          },
+          {
+          id: 2,
+          name: "Điện Thoại iPhone 7 Plus 128GB - Chính Hãng Mã VN/A - Black",
+            provider: "Kim Spa",
+            price: 300000,
+            sale_price: 100000,
+            quantity: 1
+          },
+          {
+            id: 3,
+            name: "Điện Thoại iPhone 6 Plus 128GB - Chính Hãng Mã VN/A - Black",
+            provider: "Kim Spa",
+            sale_price: 100000,
+            price: 300000,
+            quantity: 23
           }
         ],
         text : {
@@ -56,20 +56,13 @@ export default class ECartComponent extends React.Component {
         }
     }
   }
-
-  submitOrder = (data) => {
-     console.log(data)
-  }
   render() {
-    console.log(this.state.text)
-    return (<ExampleComponent 
-      customStyleContainerCart = {{backgroundColor: "#f9f9f9"}} 
-      customStyleContainerOrder = {{padding: "20px", backgroundColor: "#f9f9f9"}} data = {this.state.data} 
-      // tempPrice = {100000} 
-      // finalPrice= {300000} 
-      changeInputQuantity = {this.changeInputQuantity} 
-      // submitOrder = {this.submitOrder} 
-      text = {this.state.text}
+    return (
+      <ExampleComponent 
+        customStyleContainerCart = {{backgroundColor: "#f9f9f9"}} 
+        customStyleContainerOrder = {{padding: "20px", backgroundColor: "#f9f9f9"}} data = {this.state.data} 
+        changeInputQuantity = {this.changeInputQuantity} 
+        text = {this.state.text}
       />)
   }
 } 
