@@ -34,6 +34,7 @@ export default class ECartComponent extends React.Component {
     if(findIndex !== -1) data[findIndex].quantity = value
     this.setState({data: data})
     if(this.props.changeData) this.props.changeData(data)
+    if(this.props.changePrice) this.props.changePrice(this.caculateTotalPrice(data))
   }
   deleteProduct = (id) => {
     let data = this.state.data
@@ -51,16 +52,25 @@ export default class ECartComponent extends React.Component {
   actionClickOnTitle= (id) => { 
     if(this.props.actionClickOnTitle) this.props.actionClickOnTitle(id)
   }
+  caculateTotalPrice = (data) => {
+    let {tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0}} = this.props
+    let tempPriceValue = tempPrice  || 0
+    if(!tempPriceValue) 
+    data.forEach((e) => {
+      if(e.price) tempPriceValue += e.price*e.quantity
+    })
+    let totalPriceValue = totalPrice ? totalPrice : tempPriceValue
+    if(VAT && VAT.hasVAT && VAT.valueVAT) totalPriceValue = totalPriceValue + totalPriceValue * VAT.valueVAT/100
+    return {
+      tempPriceValue: tempPriceValue,
+      totalPriceValue: totalPriceValue
+    }
+  }
   render() {
   let {customButtonStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0} , text = {}} = this.props
   let {quantity, data} = this.state 
-  let tempPriceValue = tempPrice  || 0
-  if(!tempPriceValue) 
-  data.forEach((e) => {
-    if(e.price) tempPriceValue += e.price*e.quantity
-  })
-  let totalPriceValue = totalPrice ? totalPrice : tempPriceValue
-  if(VAT && VAT.hasVAT && VAT.valueVAT) totalPriceValue = totalPriceValue + totalPriceValue * VAT.valueVAT/100
+  let tempPriceValue =  caculateTotalPrice(data).tempPriceValue
+  let totalPriceValue =  caculateTotalPrice(data).totalPriceValue
 
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 

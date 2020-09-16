@@ -44,7 +44,8 @@ text | texts use in component. JSON type
 submitOrder | action of submit order
 actionClickOnTitle | action click on title
 deleteProduct | action click to delete product
-changeData | action click to change quantity product
+changeData | function change array of items
+changePrice | function change temp price and total price
 selectCoupon | action click to select a coupon
 
 ## License
