@@ -45,10 +45,10 @@ export default class ECartComponent extends React.Component {
     if(this.props.changePrice) this.props.changePrice(this.caculateTotalPrice(data))
     // if(this.props.deleteProduct) this.props.deleteProduct(id)
   }
-  submitOrder = (data) => {
+  submitOrder = (order) => {
     let data = this.state.data
     if(this.props.changePrice) this.props.changePrice(this.caculateTotalPrice(data))
-    if(this.props.submitOrder) this.props.submitOrder(data)
+    if(this.props.submitOrder) this.props.submitOrder(order)
   }
   formatNumber(x) {
     return x ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : 0
