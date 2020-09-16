@@ -41,9 +41,13 @@ export default class ECartComponent extends React.Component {
     let findIndex = data.findIndex((e) => e.id == id)
     data.splice(findIndex, 1)
     this.setState({data: data})
-    if(this.props.deleteProduct) this.props.deleteProduct(id)
+    if(this.props.changeData) this.props.changeData(data)
+    if(this.props.changePrice) this.props.changePrice(this.caculateTotalPrice(data))
+    // if(this.props.deleteProduct) this.props.deleteProduct(id)
   }
   submitOrder = (data) => {
+    let data = this.state.data
+    if(this.props.changePrice) this.props.changePrice(this.caculateTotalPrice(data))
     if(this.props.submitOrder) this.props.submitOrder(data)
   }
   formatNumber(x) {
@@ -87,7 +91,7 @@ export default class ECartComponent extends React.Component {
                     <div className={styles.provider}>{`${text.provider || "Provider by"}: `}<a className={styles.providerName} href= "#">{item.provider}</a></div>
                     <div className={styles.action}>
                       <a onClick = {() => this.deleteProduct(item.id)} href="#"  className={styles.actionDelete}>{text.delete || "Delete"}</a>
-                      <a onClick = {() => this.deleteProduct(item.id)} href="#" className={styles.actionBuyLater}>{text.buy_later || "Buy later"}</a>
+                      {/* <a onClick = {() => this.deleteProduct(item.id)} href="#" className={styles.actionBuyLater}>{text.buy_later || "Buy later"}</a> */}
                     </div>
                   </div>
                   <div  className={styles.infoRight}>
