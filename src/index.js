@@ -69,8 +69,8 @@ export default class ECartComponent extends React.Component {
   render() {
   let {customButtonStyle,styleSubmitButton, styleAgreeButton, customStyleContainerCart, customStyleContainerOrder, fontFamily, backgroundColor, currencyUnit = "đ", tempPrice  , totalPrice , VAT = {hasVAT: false, valueVAT: 0} , text = {}} = this.props
   let {quantity, data} = this.state 
-  let tempPriceValue =  caculateTotalPrice(data).tempPriceValue
-  let totalPriceValue =  caculateTotalPrice(data).totalPriceValue
+  let tempPriceValue =  this.caculateTotalPrice(data).tempPriceValue
+  let totalPriceValue =   this.caculateTotalPrice(data).totalPriceValue
 
   return  (
    <div style = {{backgroundColor: backgroundColor || "#f0f8ff00", fontFamily: fontFamily, height: "100%", width: "100%"}}> 
