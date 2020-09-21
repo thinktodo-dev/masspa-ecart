@@ -116,11 +116,11 @@ export default class ECartComponent extends React.Component {
         <div >
       <button style = {styleSubmitButton} onClick = {() => this.submitOrder(data)} className={styles.btnSubmit}>{text.proceed_to_order || "Order"}</button>
         </div>
-        <div  className={styles.cartPrice}>
+        {/* <div  className={styles.cartPrice}>
           <div className={styles.tempPrice}>Mã giảm giá / Quà tặng</div>
           <div className={styles.inputPromoContainer}><input className={styles.inputPromo} placeholder = "Nhập ở đây"></input><button style = {styleAgreeButton} onClick = {(event) => this.selectCoupon(event.target.value)} className = {styles.btnPromo}>Đồng ý</button></div> 
           <div className={styles.note}>Mã giảm giá đã lưu <a className={styles.linkCoupon} href = "#">Xem tại đây</a></div>
-        </div>
+        </div> */}
       </div>
     </div>
     </div>

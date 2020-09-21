@@ -31,7 +31,8 @@
 @media screen and (max-width: 768px) {
   .ecart_container {
     display: grid; 
-    grid-row-gap: 40px;
+    grid-row-gap: 40px ;
+    grid-template-columns: 100%;
   }
   .containerCart {
     width: 100%; 
